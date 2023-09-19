@@ -1,0 +1,35 @@
+project_name: foobar
+dist: dist
+
+env:
+  - CGO_ENABLED=0
+
+builds:
+  - id: foobar
+    binary: foobar
+    main: ./cmd/foobar
+    ldflags:
+      - "-s -w -X main.buildTimestamp={{ .Timestamp }} -X main.buildVersion={{ .Version }} -X main.buildRevision={{ .FullCommit }}"
+    goos:
+      - windows
+    goarch:
+      - amd64
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+changelog:
+  skip: true
+
+archives:
+  - id: default
+    format: binary
+    allow_different_binary_count: true
+    name_template: "foobar"
+
+snapshot:
+  name_template: 'dev-{{ slice .FullCommit 0 8}}'
+
+nightly:
+  #name_template: '{{ if eq (index .Env "CI_PIPELINE_SOURCE")  "merge_request_event" }}mr-{{ .Env.CI_MERGE_REQUEST_IID }}{{ else }}dev-{{ slice .FullCommit 0 8}}{{ end }}'
+  publish_release: false
+  keep_single_release: true
+
