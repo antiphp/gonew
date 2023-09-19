@@ -27,9 +27,3 @@ archives:
 
 snapshot:
   name_template: 'dev-{{ slice .FullCommit 0 8}}'
-
-nightly:
-  #name_template: '{{ if eq (index .Env "CI_PIPELINE_SOURCE")  "merge_request_event" }}mr-{{ .Env.CI_MERGE_REQUEST_IID }}{{ else }}dev-{{ slice .FullCommit 0 8}}{{ end }}'
-  publish_release: false
-  keep_single_release: true
-
