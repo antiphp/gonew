@@ -36,7 +36,7 @@ var flags = cmd.Flags{
 		Value:    ":8080",
 		EnvVars:  []string{strcase.ToSNAKE(flagAddr)},
 	},
-}.Merge(cmd.LogFlags, cmd.StatsFlags, cmd.TracingFlags)
+}.Merge(cmd.LogFlags)
 
 func main() {
 	os.Exit(mainWithExitCode())
