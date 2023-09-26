@@ -11,7 +11,7 @@ builds:
     ldflags:
       - "-s -w -X main.buildTimestamp={{ .Timestamp }} -X main.buildVersion={{ .Version }} -X main.buildRevision={{ .FullCommit }}"
     goos:
-      - windows
+      - linux
     goarch:
       - amd64
     mod_timestamp: '{{ .CommitTimestamp }}'

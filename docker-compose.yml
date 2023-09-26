@@ -1,0 +1,17 @@
+---
+version: '3'
+services:
+  postgres:
+    image: postgres:15-alpine
+    command:
+      - postgres
+      - -c
+      - log_statement=all
+      - -c
+      - log_destination=stderr
+    environment:
+      POSTGRES_USER: foobar
+      POSTGRES_PASSWORD: foobar
+      POSTGRES_DB: foobar
+    ports:
+      - "5432:5432"

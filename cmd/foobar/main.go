@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	flagFoobar = "foobar"
+	flagAddr = "addr"
 
 	catFoobar = "Foobar"
 )
@@ -29,15 +29,20 @@ var (
 )
 
 var flags = cmd.Flags{
-	&cli.IntFlag{
-		Name:     flagFoobar,
-		Usage:    "Sets foobar.",
+	&cli.StringFlag{
+		Name:     flagAddr,
+		Usage:    "HTTP address to listen to",
 		Category: catFoobar,
-		EnvVars:  []string{strcase.ToSNAKE(flagFoobar)},
+		Value:    ":8080",
+		EnvVars:  []string{strcase.ToSNAKE(flagAddr)},
 	},
 }.Merge(cmd.LogFlags)
 
 func main() {
+	os.Exit(mainWithExitCode())
+}
+
+func mainWithExitCode() int {
 	app := cli.NewApp()
 	app.Name = "Foobar"
 	app.Version = buildVersion + " @ " + buildTime.Format(time.RFC3339)
@@ -52,6 +57,7 @@ func main() {
 		case !errors.Is(err, errAlreadyLogged):
 			_, _ = fmt.Fprintf(os.Stderr, "Error: %v", err)
 		}
-		os.Exit(1)
+		return 1
 	}
+	return 0
 }
