@@ -11,47 +11,36 @@ linters-settings:
   gofumpt:
     extra-rules: true
   gosec:
-    excludes:
-      - G101
-      - G402
+    excludes: [ ]
   depguard:
     rules:
-      deprecated:
+      antiphp:
         deny:
           - pkg: pkg/errors
 
 linters:
   enable-all: true
   disable:
-    - interfacer # deprecated
-    - scopelint # deprecated
-    - maligned # deprecated
-    - golint # deprecated
-    - gocyclo # duplicate of cyclop
-    - structcheck # deprecated
-    - ifshort # deprecated
-    - varcheck # deprecated
     - deadcode # deprecated
-    - nosnakecase # deprecated
     - exhaustivestruct # deprecated
-    - contextcheck # https://github.com/kkHAIKE/contextcheck/issues/2
-    - exhaustive
+    - golint # deprecated
+    - ifshort # deprecated
+    - interfacer # deprecated
+    - maligned # deprecated
+    - nosnakecase # deprecated
+    - scopelint # deprecated
+    - structcheck # deprecated
+    - varcheck # deprecated
     - exhaustruct
-    - forcetypeassert
-    - funlen
     - gochecknoglobals
-    - gochecknoinits
-    - godox
-    - goerr113
     - gomnd
-    - ireturn
     - nlreturn
-    - nonamedreturns
     - varnamelen
     - wrapcheck
     - wsl
 
+
 issues:
   exclude-use-default: false
-  exclude: []
-  exclude-rules: []
+  exclude: [ ]
+  exclude-rules: [ ]
